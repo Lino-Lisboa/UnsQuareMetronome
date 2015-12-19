@@ -1,0 +1,109 @@
+﻿<Page
+    x:Class="Metronome.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Metronome"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:Metronome.Models"
+    mc:Ignorable="d"
+    >
+    <Page.Resources>
+        <DataTemplate x:Key="TimeSignatureDataTemplate" x:DataType="data:TimeSignature">
+            <TextBlock Text="{x:Bind Name}" TextAlignment="Center" />
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="MetroWindow" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <RelativePanel Background="SteelBlue" Grid.ColumnSpan="2">
+            <Button Name="HamburgerButton"                     
+                    Click="HamburgerButton_Click"
+                    FontFamily="Segoe MDL2 Assets" 
+                    Foreground="White"
+                    Background="Transparent"
+                    FontSize="20"
+                    Height="45"
+                    Width="45"
+                    Content="&#xE700;"/>
+            <TextBlock Text="UnsQuare Metronome"                           
+                       Foreground="White"
+                       FontSize="18"
+                       Margin="0,10,10,0" 
+                       RelativePanel.AlignRightWithPanel="True"
+                       />
+        </RelativePanel>
+
+        
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="52,0,2,2" KeyDown="Grid_KeyDown">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="7*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel>
+
+                    <MediaElement Name="MediaElemTick"  />
+                    <MediaElement Name="MediaElemTock"  />
+                    <TextBox Name="DisplayTxtBlock" 
+                           FontSize="42"                           
+                           HorizontalAlignment="Center" 
+                           FontWeight="ExtraBold"
+                           Text="{x:Bind novo.Bpm}"
+                           BorderThickness="0" 
+                           TextChanged="DisplayTxtBlock_TextChanged" LostFocus="DisplayTxtBlock_LostFocus" GotFocus="DisplayTxtBlock_GotFocus" />
+                    <Slider x:Name="sliderBpm"
+                        Margin="20"
+                        Minimum="10"
+                        Maximum="250"
+                        Value="120"
+                        ValueChanged="sliderBpm_ValueChanged"
+                        />
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <ListView ItemsSource="{x:Bind TimeSignatures}"
+                              x:Name="TimeSignatureListView"
+                              IsItemClickEnabled="True"
+                              ItemClick="ListView_ItemClick"
+                              ItemTemplate="{StaticResource TimeSignatureDataTemplate}"
+                              ScrollViewer.HorizontalScrollMode="Enabled"
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                              ScrollViewer.IsHorizontalRailEnabled="True"
+                              ScrollViewer.VerticalScrollMode="Disabled" 
+                              Loaded="TimeSignatureListView_Loaded"                              
+                              >
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </StackPanel>
+                <Button x:Name="StartStopButton" 
+                        Grid.Row="2"
+                        Content="Start" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Top"
+                        Click="StartStopButton_Click" Width="120"/>
+            </Grid>
+        </Grid>
+
+
+        <local:Pane x:Name="MyPane" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+
+
+    </Grid>
+</Page>
