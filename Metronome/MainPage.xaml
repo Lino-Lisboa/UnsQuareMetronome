@@ -10,7 +10,10 @@
     >
     <Page.Resources>
         <DataTemplate x:Key="TimeSignatureDataTemplate" x:DataType="data:TimeSignature">
-            <TextBlock Text="{x:Bind Name}" TextAlignment="Center" />
+            <TextBlock x:Name="timeSignatureTextBox" 
+                       Text="{x:Bind Name}" 
+                       TextAlignment="Center" 
+                       Style="{StaticResource BodyTextBlockStyle}" />
         </DataTemplate>
     </Page.Resources>
 
@@ -24,7 +27,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <RelativePanel Background="SteelBlue" Grid.ColumnSpan="2">
+        <RelativePanel Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.ColumnSpan="2">
             <Button Name="HamburgerButton"                     
                     Click="HamburgerButton_Click"
                     FontFamily="Segoe MDL2 Assets" 
@@ -34,11 +37,11 @@
                     Height="45"
                     Width="45"
                     Content="&#xE700;"/>
-            <TextBlock Text="UnsQuare Metronome"                           
+            <TextBlock Text="UnsQuare Metronome"                        
+                       Margin="0,5,5,0" 
                        Foreground="White"
-                       FontSize="18"
-                       Margin="0,10,10,0" 
-                       RelativePanel.AlignRightWithPanel="True"
+                       RelativePanel.AlignRightWithPanel="True" 
+                       Style="{StaticResource TitleTextBlockStyle}"
                        />
         </RelativePanel>
 
@@ -59,12 +62,15 @@
                     <MediaElement Name="MediaElemTick"  />
                     <MediaElement Name="MediaElemTock"  />
                     <TextBox Name="DisplayTxtBlock" 
-                           FontSize="42"                           
-                           HorizontalAlignment="Center" 
-                           FontWeight="ExtraBold"
-                           Text="{x:Bind novo.Bpm}"
-                           BorderThickness="0" 
-                           TextChanged="DisplayTxtBlock_TextChanged" LostFocus="DisplayTxtBlock_LostFocus" GotFocus="DisplayTxtBlock_GotFocus" />
+                             FontSize="42"                           
+                             HorizontalAlignment="Center" 
+                             FontWeight="ExtraBold"
+                             Text="{x:Bind novo.Bpm}"
+                             BorderThickness="0" 
+                             TextChanged="DisplayTxtBlock_TextChanged" 
+                             LostFocus="DisplayTxtBlock_LostFocus" 
+                             GotFocus="DisplayTxtBlock_GotFocus" 
+                             Style="{StaticResource AutoSuggestBoxTextBoxStyle}" />
                     <Slider x:Name="sliderBpm"
                         Margin="20"
                         Minimum="10"
@@ -97,7 +103,10 @@
                         Content="Start" 
                         HorizontalAlignment="Center" 
                         VerticalAlignment="Top"
-                        Click="StartStopButton_Click" Width="120"/>
+                        Click="StartStopButton_Click" 
+                        Width="120" 
+                        Style="{StaticResource PivotTitleContentControlStyle}"
+                        />
             </Grid>
         </Grid>
 

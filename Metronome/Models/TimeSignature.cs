@@ -22,20 +22,9 @@ namespace Metronome.Models
             TimeSignatures.Add(new TimeSignature { Name = "5/4", UppNumber = 5, LowNumber = 4 });
             TimeSignatures.Add(new TimeSignature { Name = "6/4", UppNumber = 6, LowNumber = 4 });
             TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 7, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-            TimeSignatures.Add(new TimeSignature { Name = "7/4", UppNumber = 2, LowNumber = 4 });
-
+            TimeSignatures.Add(new TimeSignature { Name = "6/8", UppNumber = 6, LowNumber = 8 });
+            TimeSignatures.Add(new TimeSignature { Name = "9/8", UppNumber = 9, LowNumber = 8 });
+            TimeSignatures.Add(new TimeSignature { Name = "12/8", UppNumber = 12, LowNumber = 8 });
 
             return TimeSignatures;
         }

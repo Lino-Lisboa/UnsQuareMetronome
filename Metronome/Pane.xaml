@@ -13,50 +13,59 @@
                    OpenPaneLength="200"
                    x:FieldModifier="Public">
         <SplitView.Pane>
-            <StackPanel Background="#FF2E2E2E" >               
+            <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" >
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="HomeButton" 
-                                FontFamily="Segoe MDL2 Assets" 
-                                Foreground="White"
-                                FontSize="24"
-                                Height="45" Width="45"
-                                Background="Transparent"
-                                Content="&#xE80F;"
-                                Click="HomeButton_Click"/>
-                    <TextBlock Text="Home" FontSize="15" Foreground="WhiteSmoke" VerticalAlignment="Center" />
+                            FontFamily="Segoe MDL2 Assets"                                
+                            FontSize="24"
+                            Height="45" 
+                            Width="45"
+                            Background="Transparent"
+                            Content="&#xE80F;"
+                            Click="HomeButton_Click" 
+                            Style="{StaticResource TextBlockButtonStyle}"/>
+                    <TextBlock Text="Home" 
+                               VerticalAlignment="Center" 
+                               Style="{StaticResource BaseTextBlockStyle}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="ComposerButton" 
-                                FontFamily="Segoe MDL2 Assets" 
-                                Foreground="White"
-                                FontSize="24"
-                                Height="45" Width="45"
-                                Background="Transparent"
-                                Content="&#xE8A1;"
-                                Click="ComposerButton_Click"/>
-                    <TextBlock Text="Compose" FontSize="15" Foreground="WhiteSmoke" VerticalAlignment="Center" />
+                            FontFamily="Segoe MDL2 Assets"                                 
+                            FontSize="24"
+                            Height="45" Width="45"
+                            Background="Transparent"
+                            Content="&#xE8A1;"
+                            Click="ComposerButton_Click" 
+                            Style="{StaticResource TextBlockButtonStyle}"/>
+                    <TextBlock Text="Compose" 
+                               Style="{StaticResource BaseTextBlockStyle}"                                
+                               VerticalAlignment="Center" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="SettingsButton" 
-                                FontFamily="Segoe MDL2 Assets" 
-                                Foreground="White"
-                                FontSize="24"
-                                Height="45" Width="45"
-                                Background="Transparent"
-                                Content="&#xE713;"
-                                Click="SettingsButton_Click"/>
-                    <TextBlock Text="Settings" FontSize="15" Foreground="WhiteSmoke" VerticalAlignment="Center" />
+                            FontFamily="Segoe MDL2 Assets"                                 
+                            FontSize="24"
+                            Height="45" Width="45"
+                            Background="Transparent"
+                            Content="&#xE713;"
+                            Click="SettingsButton_Click" 
+                            Style="{StaticResource TextBlockButtonStyle}"/>
+                    <TextBlock Text="Settings" 
+                               Style="{StaticResource BaseTextBlockStyle}"                                
+                               VerticalAlignment="Center" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="AboutButton" 
-                                FontFamily="Segoe MDL2 Assets" 
-                                Foreground="White"
-                                FontSize="24"
-                                Height="45" Width="45"
-                                Background="Transparent"
-                                Content="&#xE76E;"
-                                Click="AboutButton_Click"/>
-                    <TextBlock Text="About" FontSize="15" Foreground="WhiteSmoke" VerticalAlignment="Center" />
+                            FontFamily="Segoe MDL2 Assets"                                 
+                            FontSize="24"
+                            Height="45" Width="45"
+                            Background="Transparent"
+                            Content="&#xE76E;"
+                            Click="AboutButton_Click" 
+                            Style="{StaticResource TextBlockButtonStyle}"/>
+                    <TextBlock Text="About" 
+                               Style="{StaticResource BaseTextBlockStyle}"                                
+                               VerticalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
         </SplitView.Pane>

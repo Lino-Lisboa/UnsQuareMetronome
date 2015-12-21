@@ -32,14 +32,14 @@ namespace Metronome
 
         public MainPage()
         {
-            this.InitializeComponent();                    
-            
+            this.InitializeComponent();
+
             Sounds = new ObservableCollection<Sound>();
             SoundManager.GetAllSounds(Sounds);
-            TimeSignatures = TimeSignatureManager.GetTimeSignatures();                     
-            
-            novo = new MetronomeClass(4, 4, 120, this.BaseUri, this, MediaElemTick, MediaElemTock);            
-        }        
+            TimeSignatures = TimeSignatureManager.GetTimeSignatures();
+
+            novo = new MetronomeClass(TimeSignatures.ElementAt(2).UppNumber, TimeSignatures.ElementAt(2).LowNumber, 120, this.BaseUri, this, MediaElemTick, MediaElemTock, TimeSignatures);
+        }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -63,19 +63,24 @@ namespace Metronome
             if (!novo.TimerCanceled)
             {
                 StartStopButton.Content = "Start";
-                novo.TimerCanceled = true;                           
+                novo.TimerCanceled = true;
             }
             else
             {
                 novo.TimerCanceled = false;
                 StartStopButton.Content = "Stop";
-                novo.TimerSetUp();              
-            }            
+                novo.TimerControl(novo.UpperNum, novo.LowerNum);
+            }
         }
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            novo.SelectedTimeSignature = (TimeSignature)e.ClickedItem;
+            novo.UpperNum = novo.SelectedTimeSignature.UppNumber;
+            novo.LowerNum = novo.SelectedTimeSignature.LowNumber;
 
+            novo.TimerCanceled = true;
+            StartStopButton.Content = "Start";
         }
 
         private void TimeSignatureListView_Loaded(object sender, RoutedEventArgs e)
@@ -87,7 +92,7 @@ namespace Metronome
         }    
 
         private void DisplayTxtBlock_TextChanged(object sender, TextChangedEventArgs e)
-        {            
+        {
             if (novo != null)
             {
                 int result;
@@ -97,7 +102,7 @@ namespace Metronome
                 {
                     novo.Bpm = result;
                     sliderBpm.Value = novo.Bpm;
-                }                
+                }
             }
         }
 
@@ -114,7 +119,7 @@ namespace Metronome
                         var dialog = new Windows.UI.Popups.MessageDialog("Por favor insira valores entre 10 e 250");
                         var dialogResult = await dialog.ShowAsync();
                     }
-                    else StartStopButton.IsEnabled = true;                   
+                    else StartStopButton.IsEnabled = true;
                 }
                 else
                 {
@@ -122,7 +127,7 @@ namespace Metronome
                     var dialog = new Windows.UI.Popups.MessageDialog("Por favor insira um valor numérico");
                     var dialogResult = await dialog.ShowAsync();
                 }
-                
+
             }
         }
 

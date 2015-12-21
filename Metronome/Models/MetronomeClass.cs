@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using System.Diagnostics;
 using System.Threading;
 using Windows.UI.Core;
+using System.Collections.Generic;
 
 namespace Metronome.Models
 {
@@ -13,7 +14,7 @@ namespace Metronome.Models
 
         //Properties
         public int UpperNum { get; set; }
-        public int LowerNum { get; set; }        
+        public int LowerNum { get; set; }
         public int Bpm { get; set; }
         public int TimerMSecs { get; set; }
         public System.Uri BaseURI { get; set; }
@@ -26,10 +27,13 @@ namespace Metronome.Models
         public System.Threading.Timer myTimer { get; set; }
         public bool TimerCanceled { get; set; }
         public Stopwatch Watch { get; set; }
+        public List<TimeSignature> ListTimeSignatures { get; set; }
+        public TimeSignature SelectedTimeSignature { get; set; }
+        public int TicksCount { get; set; }
 
         //***************************************************************
         //Constructors
-        public MetronomeClass(int upperNum, int lowerNum, int bpm, System.Uri baseURI, MainPage page, MediaElement mediaTick, MediaElement mediaTock)
+        public MetronomeClass(int upperNum, int lowerNum, int bpm, System.Uri baseURI, MainPage page, MediaElement mediaTick, MediaElement mediaTock, List<TimeSignature> timesignatures)
         {
             UpperNum = upperNum;
             LowerNum = lowerNum;
@@ -39,11 +43,14 @@ namespace Metronome.Models
             Page = page;
             Tick = mediaTick;
             Tock = mediaTock;
-            TimerCanceled = true;           
+            TimerCanceled = true;
             Tick.AutoPlay = false;
             Tock.AutoPlay = false;
             Tick.Source = new Uri(Page.BaseUri, Page.Sounds.Where(X => X.Name == "Tick").FirstOrDefault().AudioFile.ToString());
-            Tock.Source = new Uri(Page.BaseUri, Page.Sounds.Where(X => X.Name == "Click").FirstOrDefault().AudioFile.ToString());            
+            Tock.Source = new Uri(Page.BaseUri, Page.Sounds.Where(X => X.Name == "Click").FirstOrDefault().AudioFile.ToString());
+            ListTimeSignatures = timesignatures;
+            SelectedTimeSignature = ListTimeSignatures.ElementAt(2);
+            TicksCount = 0;
         }
         public MetronomeClass(int upperNum, int lowerNum, int bpm, System.Uri baseURI, Views.Composer composerPage, MediaElement mediaTick, MediaElement mediaTock)
         {
@@ -54,7 +61,7 @@ namespace Metronome.Models
             CalculateBpm(Bpm);
             ComposerPage = composerPage;
             Tick = mediaTick;
-            Tock = mediaTock;            
+            Tock = mediaTock;
             Tick.AutoPlay = false;
             Tock.AutoPlay = false;
             Tick.Source = new Uri(ComposerPage.BaseUri, ComposerPage.Sounds.Where(X => X.Name == "Tick").FirstOrDefault().AudioFile.ToString());
@@ -64,11 +71,21 @@ namespace Metronome.Models
         //*************************************************************
         //Methods 
         public void CalculateBpm(int bpms)
-        {            
-            this.TimerMSecs = (1000 * 60) / bpms;            
+        {
+            this.TimerMSecs = (1000 * 60) / bpms;
         }
 
+        public void TimerControl(int uppNum, int lowNum)
+        {
+            if (lowNum == 8)
+            {
 
+            }
+            else if (lowNum == 4)
+            {
+                TimerSetUp();
+            }
+        }
 
 
         //*********************************
@@ -86,8 +103,27 @@ namespace Metronome.Models
                 await Page.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     watch.Start();
-                    Tick.Play();
-                    myTimer.Change(Math.Max(0, TimerMSecs - (int)watch.ElapsedMilliseconds), TimerMSecs - (int)watch.ElapsedMilliseconds);
+                    if (TicksCount == 0)
+                    {
+                        Tock.Play();
+                        TicksCount++;
+                        myTimer.Change(Math.Max(0, TimerMSecs - (int)watch.ElapsedMilliseconds), TimerMSecs - (int)watch.ElapsedMilliseconds);
+                    }
+                    else
+                    {
+                        if (TicksCount == UpperNum)
+                        {
+                            TicksCount = 0;
+                            Tock.Play();
+                            TicksCount++;
+                        }
+                        else
+                        {
+                            Tick.Play();
+                            TicksCount++;
+                            myTimer.Change(Math.Max(0, TimerMSecs - (int)watch.ElapsedMilliseconds), TimerMSecs - (int)watch.ElapsedMilliseconds);
+                        }
+                    }
                 });
             }
             else
@@ -96,10 +132,11 @@ namespace Metronome.Models
                 watch.Stop();
                 watch.Reset();
                 watch = null;
+                TicksCount = 0;
             }
             Watch = watch;
         }
 
-    }        
-    
+    }
+
 }
