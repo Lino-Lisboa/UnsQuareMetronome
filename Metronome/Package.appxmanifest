@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="2d69256d-5cd7-43b4-a50a-b0ceda636b32" Publisher="CN=LeX" Version="1.0.4.0" />
+  <Identity Name="2d69256d-5cd7-43b4-a50a-b0ceda636b32" Publisher="CN=LeX" Version="1.0.5.0" />
   <mp:PhoneIdentity PhoneProductId="2d69256d-5cd7-43b4-a50a-b0ceda636b32" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Metronome</DisplayName>
