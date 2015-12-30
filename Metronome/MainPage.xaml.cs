@@ -40,11 +40,7 @@ namespace Metronome
 
             novo = new MetronomeClass(TimeSignatures.ElementAt(2).UppNumber, TimeSignatures.ElementAt(2).LowNumber, 120, this.BaseUri, this, MediaElemTick, MediaElemTock, TimeSignatures);
         }
-
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            MyPane.MySplitView.IsPaneOpen = !MyPane.MySplitView.IsPaneOpen;            
-        }           
+        
 
         private void sliderBpm_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
@@ -139,6 +135,11 @@ namespace Metronome
         private void Grid_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             
+        }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            MyPane.MySplitView.IsPaneOpen = !MyPane.MySplitView.IsPaneOpen;
         }
     }
 }

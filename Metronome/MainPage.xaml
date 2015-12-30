@@ -27,7 +27,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <RelativePanel Background="{ThemeResource SystemControlBackgroundAccentBrush}" Grid.ColumnSpan="2">
+        <RelativePanel Background="{ThemeResource SystemControlBackgroundAccentBrush}"
+                       Grid.ColumnSpan="2">
             <Button Name="HamburgerButton"                     
                     Click="HamburgerButton_Click"
                     FontFamily="Segoe MDL2 Assets" 
@@ -44,8 +45,8 @@
                        Style="{StaticResource TitleTextBlockStyle}"
                        />
         </RelativePanel>
-
         
+
         <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="52,0,2,2" KeyDown="Grid_KeyDown">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
